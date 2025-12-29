@@ -22,11 +22,13 @@
   },
   "homepage": "https://github.com/aZeroDoubleSeven/avocado-cli#readme",
   "dependencies": {
+    "@clack/prompts": "^0.11.0",
     "boxen": "^8.0.1",
     "chalk": "^5.4.1",
-    "lerna": "^8.1.9",
     "commander": "^11.0.0",
     "ejs": "^3.1.9",
-    "inquirer": "^9.2.12"
+    "gradient-string": "^3.0.0",
+    "inquirer": "^9.2.12",
+    "lerna": "^8.1.9"
   }
 }
