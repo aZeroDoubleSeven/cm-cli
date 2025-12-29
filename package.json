@@ -1,0 +1,32 @@
+{
+  "name": "avocado-cli",
+  "version": "1.0.0",
+  "description": "cli",
+  "type": "module",
+  "main": "index.js",
+  "bin": {
+    "avo": "bin/index.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aZeroDoubleSeven/avocado-cli.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aZeroDoubleSeven/avocado-cli/issues"
+  },
+  "homepage": "https://github.com/aZeroDoubleSeven/avocado-cli#readme",
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1",
+    "lerna": "^8.1.9",
+    "commander": "^11.0.0",
+    "ejs": "^3.1.9",
+    "inquirer": "^9.2.12"
+  }
+}
