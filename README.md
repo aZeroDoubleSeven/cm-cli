@@ -1,2 +1,2 @@
-# avocado-cli
+# cm-cli
 cli

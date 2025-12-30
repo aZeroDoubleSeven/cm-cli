@@ -1,15 +1,12 @@
 #! /usr/bin/env node
 
-import boxen from "boxen";
-import chalk from "chalk";
-
 import { program } from "commander";
 import create from "../src/commands/create.js";
 import { showLogo } from "../src/utils/logo.js";
 
 showLogo();
 
-program.name("avocado-cli").version("1.0.0");
+program.name("cm-cli").version("1.0.0");
 
 program.command("create").description("创建初始化项目").action(create);
 

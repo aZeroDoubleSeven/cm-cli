@@ -1,11 +1,11 @@
 {
-  "name": "avocado-cli",
+  "name": "cm-cli",
   "version": "1.0.0",
   "description": "cli",
   "type": "module",
   "main": "index.js",
   "bin": {
-    "avo": "bin/index.js"
+    "cm": "bin/index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
