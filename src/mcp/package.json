@@ -1,16 +1,23 @@
 {
-  "name": "avo-mcp",
+  "name": "cm-cli-mcp",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
+  "main": "src/index.js",
+  "bin": {
+    "cm-mcp": "./src/index.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "get-config": "node get-cursor-config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "avo-cli mcp server",
-  "devDependencies": {
-    "@modelcontextprotocol/inspector": "^0.16.6",
+  "description": "CM CLI MCP server - 提供快速创建项目和查看项目结构的能力",
+  "dependencies": {
     "@modelcontextprotocol/sdk": "^1.17.5"
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/inspector": "^0.16.6"
   }
 }

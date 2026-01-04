@@ -3,6 +3,7 @@ import {
   outro,
   text,
   select,
+  confirm,
   spinner,
   cancel,
   isCancel,
@@ -15,9 +16,35 @@ import { fileURLToPath } from "node:url";
 
 import copyDir from "../utils/copy.js";
 import renderTemplates from "../utils/render.js";
+import setupESLint from "../utils/eslint.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+/**
+ * 根据模板类型获取启动命令
+ */
+function getStartCommand(templateName, needESLint) {
+  const commands = {
+    'Uni-app': {
+      install: 'pnpm install',
+      lint: needESLint ? 'pnpm run lint' : null,
+      dev: 'pnpm run dev:h5'
+    },
+    'Vue2': {
+      install: 'pnpm install',
+      lint: needESLint ? 'pnpm run lint' : null,
+      dev: 'pnpm run dev'
+    },
+    'Vue3': {
+      install: 'pnpm install',
+      lint: needESLint ? 'pnpm run lint' : null,
+      dev: 'pnpm run dev'
+    }
+  };
+
+  return commands[templateName] || commands['Vue2'];
+}
 
 export default async function create() {
   // 显示欢迎信息
@@ -79,7 +106,18 @@ export default async function create() {
     process.exit(0);
   }
 
-  // 4. 检查目录是否存在
+  // 4. 询问是否配置 ESLint
+  const needESLint = await confirm({
+    message: '是否配置 ESLint？',
+    initialValue: true,
+  });
+
+  if (isCancel(needESLint)) {
+    cancel('操作已取消');
+    process.exit(0);
+  }
+
+  // 5. 检查目录是否存在
   const targetDir = path.resolve(process.cwd(), projectName);
 
   if (fs.existsSync(targetDir)) {
@@ -87,7 +125,7 @@ export default async function create() {
     process.exit(1);
   }
 
-  // 5. 创建项目
+  // 6. 创建项目
   const s = spinner();
   s.start('正在创建项目...');
 
@@ -104,12 +142,27 @@ export default async function create() {
     }
 
     copyDir(templateDir, targetDir);
-    renderTemplates(targetDir, { projectName });
+    renderTemplates(targetDir, { projectName, needESLint });
+
+    // 如果选择配置 ESLint，则进行配置
+    if (needESLint) {
+      s.message('正在配置 ESLint...');
+      await setupESLint(targetDir, templateName);
+    }
 
     s.stop('✅ 项目创建成功！');
 
-    // 6. 显示成功信息
-    outro(chalk.green(`\n🎉 项目创建成功！\n\n  cd ${projectName}\n  pnpm install\n  pnpm run dev:h5\n`));
+    // 7. 显示成功信息
+    const startCmd = getStartCommand(templateName, needESLint);
+    let installCmd = `  cd ${projectName}\n  ${startCmd.install}\n`;
+    
+    if (startCmd.lint) {
+      installCmd += `  ${startCmd.lint}\n`;
+    }
+    
+    installCmd += `  ${startCmd.dev}\n`;
+    
+    outro(chalk.green(`\n🎉 项目创建成功！\n\n${installCmd}`));
   } catch (error) {
     s.stop('❌ 创建失败');
     cancel(`创建项目时出错: ${error.message}`);

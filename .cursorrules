@@ -1,0 +1,32 @@
+# CM CLI MCP 服务器使用说明
+
+本项目的 MCP 服务器提供了两个工具：
+
+## 可用工具
+
+### 1. create-project
+快速创建项目，支持：
+- 移动端 (mobile): Uni-app 模板
+- 小程序 (miniprogram): Uni-app 模板  
+- 后台管理系统 (admin): Vue2 或 Vue3 模板
+
+**参数**:
+- `projectName`: 项目名称（必需）
+- `projectType`: 项目类型，可选：mobile, miniprogram, admin（必需）
+- `vueVersion`: Vue 版本，当 projectType 为 admin 时必需，可选：Vue2, Vue3
+- `needESLint`: 是否配置 ESLint，默认 true
+- `targetPath`: 目标路径，默认当前目录
+
+### 2. show-project-tree
+查看项目结构树
+
+**参数**:
+- `projectPath`: 项目路径（必需）
+- `maxDepth`: 最大深度，默认 3
+- `ignorePatterns`: 忽略模式，默认 ["node_modules", ".git", "dist", "build"]
+
+## 使用示例
+
+当用户需要创建项目时，使用 create-project 工具。
+当用户需要查看项目结构时，使用 show-project-tree 工具。
+
