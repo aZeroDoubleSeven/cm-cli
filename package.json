@@ -1,6 +1,6 @@
 {
   "name": "congmao-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "cli",
   "type": "module",
   "main": "index.js",

@@ -108,8 +108,6 @@ cm mcp
 }
 ```
 
-详细配置指南请查看 [MCP 配置文档](./src/mcp/CURSOR_SETUP.md)
-
 ## 📝 许可证
 
 MPL
