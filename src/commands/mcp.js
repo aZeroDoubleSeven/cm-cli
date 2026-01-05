@@ -97,7 +97,7 @@ async function startMCPServer() {
 
   try {
     // 启动 stdio 服务器（用于 Cursor）
-    console.log(chalk.green("🚀 正在启动 MCP stdio 服务器（用于 Cursor）...\n"));
+    console.log(chalk.green("🚀 正在启动 MCP stdio 服务器..."));
     
     const { spawn } = await import("child_process");
     const stdioProcess = spawn("node", [mcpServerPath], {
@@ -110,8 +110,7 @@ async function startMCPServer() {
       process.exit(1);
     });
 
-    console.log(chalk.green(`✅ MCP stdio 服务器已启动（用于 Cursor）`));
-    console.log(chalk.gray(`   按 Ctrl+C 停止服务器\n`));
+    console.log(chalk.green(`✅ MCP stdio 服务器已启动!`));
 
     // 处理退出信号
     process.on("SIGINT", () => {
@@ -147,7 +146,7 @@ export default async function mcp(options = {}) {
 
   // 如果只是查看配置，不启动服务器
   if (options.configOnly) {
-    console.log(chalk.gray("💡 提示: 使用 'cm mcp' 可以启动 MCP stdio 服务器（用于 Cursor）\n"));
+    console.log(chalk.gray("💡 提示: 使用 'cm mcp' 可以启动 MCP stdio 服务器"));
     return;
   }
 
